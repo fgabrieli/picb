@@ -1,0 +1,5 @@
+<?php 
+/**
+ * Entity REST service
+ */
+ ?>
