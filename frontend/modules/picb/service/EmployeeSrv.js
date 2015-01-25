@@ -16,7 +16,7 @@ picb.Service.EmployeeSrv = $.extend(true, {}, picb.Service, {
 
  // public
  hasEmployee : function() {
-  return (!nc.util.Object.isEmpty(this.employee));
+  return (!nc.Util.Object.isEmpty(this.employee));
  },
 
  // public
