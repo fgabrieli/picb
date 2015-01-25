@@ -41,6 +41,7 @@ picb.Upload = {
   $('#picture').fileupload(t.fileUploadOpt);
  },
  ngController : function($scope) {
+  /*
   var employeeSrv = picb.Service.EmployeeSrv;
   $scope.isVisible = (!employeeSrv.hasEmployee());
 
@@ -53,6 +54,7 @@ picb.Upload = {
     }
    }
   });
+  */
  }
 };
 

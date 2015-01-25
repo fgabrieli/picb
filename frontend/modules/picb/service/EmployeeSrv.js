@@ -4,15 +4,30 @@
 
 picb.Service.EmployeeSrv = $.extend(true, {}, picb.Service, {
  employee : {},
+ 
  init : function() {
+  var t = picb.Service.EmployeeSrv;
+  
+  Event.bind(picb.evt.validateEmployee, 'EmployeeSrvHandler', function(data) {
+   if (!t.hasEmployee()) {
+    t.get(data.employeeId, function(employee) {
+     t.employee = employee;
+
+     Event.fire(picb.evt.employeeUpdated, t.employee);
+    });
+   } else {
+    Event.fire(picb.evt.employeeUpdated, t.employee);
+   }
+  });
  },
-// // public
-// hasEmployee : function() {
-//  return (typeof this.getUriParams().employeeId != 'undefined');
-// },
-// // private
+
+ // public
+ hasEmployee : function() {
+  return (!nc.util.Object.isEmpty(this.employee));
+ },
+
+ // // private
 // getUriParams : function() {
-//  return new picb.URI(window.location.toString()).search(true);
 // },
 // // public, expects the url to have a query with the employee id
 // getId : function() {
@@ -28,29 +43,18 @@ picb.Service.EmployeeSrv = $.extend(true, {}, picb.Service, {
   * @param function callback (mandatory)
   */
  get : function(id, callback) {
-  var sendReq = function(cb) {
-   $.ajax({
-    url : '/backend/service/entity/' + id,
-    method : 'GET',
-    dataType : 'json',
-    success : function(data) {
-     // employees are unique
-     cb(data[0]);
-    },
-    error : function(jqXHR, textStatus, errorThrown) {
-     console.log('Error while trying to get the entity with id: ', id, ', error thrown: ', errorThrown);
-    }
-   });
-  }
-
-  var hasCallback = (typeof callback != 'undefined');
-  if (hasCallback) {
-   if (nc.util.Object.isEmpty(this.employee)) {
-    sendReq(callback);
-   } else {
-    callback(employee);
+  $.ajax({
+   url : '/backend/service/entity/' + id,
+   method : 'GET',
+   dataType : 'json',
+   success : function(data) {
+    // employees are unique
+    callback(data[0]);
+   },
+   error : function(jqXHR, textStatus, errorThrown) {
+    console.log('Error while trying to get the entity with id: ', id, ', error thrown: ', errorThrown);
    }
-  }
+  });
  },
 
  /**

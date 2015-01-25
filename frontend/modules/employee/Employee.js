@@ -4,14 +4,24 @@
 
 picb.Employee = {
  init : function() {
-  // initialize
+  var params = picb.URI(window.location.toString()).search(true);
+  if (typeof params.employeeId != 'undefined') {
+   Event.fire(picb.evt.validateEmployee, {
+    employeeId : params.employeeId
+   });
+  }
  },
  ngController : function($scope) {
-  var employeeSrv = picb.Service.EmployeeSrv;
-  $scope.isVisible = (employeeSrv.hasEmployee());
+  Event.bind(picb.evt.employeeUpdated, 'EmployeeHandler', function(employee) {
+    $scope.isVisible = picb.Service.EmployeeSrv.hasEmployee();
+    
+    $scope.picture = employee.picture;
+    
+    $scope.$apply();
+  });
  }
 };
 
 $(document).ready(function() {
- picb.Upload.init();
+ picb.Employee.init();
 });

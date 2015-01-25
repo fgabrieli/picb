@@ -2,8 +2,12 @@
  * picb general config file
  */
 
+var picb = {};
+
 picb.events = {
-  pictureUploaded : 'PictureUploaded'
+  pictureUploaded : 'PictureUploaded',
+  validateEmployee : 'ValidateEmployee',
+  employeeUpdated : 'EmployeeUpdated'
 };
 
-var picb.evt = picb.events;
+picb.evt = picb.events;
