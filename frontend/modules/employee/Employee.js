@@ -6,12 +6,12 @@ picb.Employee = {
  init : function() {
   var params = picb.URI(window.location.toString()).search(true);
   if (typeof params.employeeId != 'undefined') {
-   Event.fire(picb.evt.validateEmployee, {
+   nc.Event.fire(picb.evt.validateEmployee, {
     employeeId : params.employeeId
    });
   }
 
-  Event.bind(picb.evt.pictureUploaded, 'EmployeeHandler', function(data) {
+  nc.Event.bind(picb.evt.pictureUploaded, 'EmployeeHandler', function(data) {
    // create a new employee
    var employeeSrv = picb.Service.EmployeeSrv;
    employeeSrv.addEmployee({
@@ -19,12 +19,12 @@ picb.Employee = {
    });
   });
 
-  Event.bind(picb.evt.employeeAdded, 'EmployeeHandler', function(data) {
+  nc.Event.bind(picb.evt.employeeAdded, 'EmployeeHandler', function(data) {
    window.location.replace('//picb/frontend?employeeId=' + data.id);
   });
  },
  ngController : function($scope) {
-  Event.bind(picb.evt.employeeUpdated, 'EmployeeHandler', function() {
+  nc.Event.bind(picb.evt.employeeUpdated, 'EmployeeHandler', function() {
    $scope.isVisible = picb.Service.EmployeeSrv.hasEmployee();
    if ($scope.isVisible) {
     var employeeSrv = picb.Service.EmployeeSrv;

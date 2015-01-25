@@ -11,7 +11,7 @@ picb.Upload.Browser = $.extend(true, {}, picb.Upload, {
   acceptFileTypes : /(\.|\/)(gif|jpe?g|png)$/i,
   add : function(e, data) {
    data.submit().success(function (data, textStatus, jqXHR) {
-    Event.fire(picb.evt.pictureUploaded, {
+    nc.Event.fire(picb.evt.pictureUploaded, {
      media : 'browser',
      picture : JSON.parse(data).files[0].url
     })
@@ -48,7 +48,7 @@ picb.Upload.Browser = $.extend(true, {}, picb.Upload, {
  ngController : function($scope) {
   $scope.isVisible = true;
 
-  Event.bind(picb.evt.employeeUpdated, 'EmployeeHandler', function() {
+  nc.Event.bind(picb.evt.employeeUpdated, 'EmployeeHandler', function() {
    $scope.isVisible = !(picb.Service.EmployeeSrv.hasEmployee());
    $scope.$apply();
   });

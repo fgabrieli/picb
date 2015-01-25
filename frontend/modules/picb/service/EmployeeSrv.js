@@ -11,7 +11,7 @@ picb.Service.EmployeeSrv = $.extend(true, {}, picb.Service, {
  init : function() {
   var t = picb.Service.EmployeeSrv;
   
-  Event.bind(picb.evt.validateEmployee, 'EmployeeSrvHandler', t.validate);
+  nc.Event.bind(picb.evt.validateEmployee, 'EmployeeSrvHandler', t.validate);
  },
 
  // public
@@ -39,7 +39,7 @@ picb.Service.EmployeeSrv = $.extend(true, {}, picb.Service, {
    data : reqData,
    dataType : 'json',
    success : function(employeeId) {
-    Event.fire(picb.evt.employeeAdded, {
+    nc.Event.fire(picb.evt.employeeAdded, {
      id : employeeId
     });
    },
@@ -61,7 +61,7 @@ picb.Service.EmployeeSrv = $.extend(true, {}, picb.Service, {
     var isValid = (data.length == 1);
     t.employee = (isValid ? data[0] : {});
 
-    Event.fire(picb.evt.employeeUpdated, {});
+    nc.Event.fire(picb.evt.employeeUpdated, {});
    },
    error : function(jqXHR, textStatus, errorThrown) {
     console.log('Error while trying to get the entity with id: ', id, ', error thrown: ', errorThrown);
