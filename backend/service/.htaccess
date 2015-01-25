@@ -1,0 +1,9 @@
+RewriteEngine on
+
+# Get entity
+RewriteRule entity/([0-9]+) /backend/service/entity.php?data=$1
+
+# Add, Update, Delete entity
+RewriteRule entity/add /backend/service/entity.php
+RewriteRule entity/update /backend/service/entity.php
+RewriteRule entity/delete /backend/service/entity.php
