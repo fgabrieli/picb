@@ -12,6 +12,7 @@ picb.Upload = {
    data.submit().success(function(result, textStatus, jqXHR) {
     console.log(result);
    }).error(function(jqXHR, textStatus, errorThrown) {
+    
 
    }).complete(function(result, textStatus, jqXHR) {
 
@@ -40,7 +41,7 @@ picb.Upload = {
   $('#picture').fileupload(t.fileUploadOpt);
  },
  ngController : function($scope) {
-  var employeeSrv = picb.Service.Employee;
+  var employeeSrv = picb.Service.EmployeeSrv;
   $scope.isVisible = (!employeeSrv.hasEmployee());
 
   $scope.$watch('isVisible', function(isVisible) {

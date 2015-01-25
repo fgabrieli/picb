@@ -7,7 +7,7 @@ picb.Employee = {
   // initialize
  },
  ngController : function($scope) {
-  var employeeSrv = picb.Service.Employee;
+  var employeeSrv = picb.Service.EmployeeSrv;
   $scope.isVisible = (employeeSrv.hasEmployee());
  }
 };
