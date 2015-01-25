@@ -1,5 +1,7 @@
 /**
  * Services base class.
+ * 
+ * @author Fernando Gabrieli
  */
 
 picb.Service = {

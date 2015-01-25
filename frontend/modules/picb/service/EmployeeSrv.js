@@ -1,5 +1,7 @@
 /**
  * Service to handle Employees.
+ * 
+ * @author Fernando Gabrieli
  */
 
 picb.Service.EmployeeSrv = $.extend(true, {}, picb.Service, {

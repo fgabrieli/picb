@@ -1,5 +1,7 @@
 /**
  * picb general config file
+ * 
+ * @author Fernando Gabrieli
  */
 
 var picb = {};
